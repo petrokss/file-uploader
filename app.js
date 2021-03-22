@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const logger = require('morgan');
 
@@ -14,14 +14,19 @@ const run = async () => {
 
   app.use(logger('dev'));
 
-  app.use('/graphql', graphqlHTTP({
-    schema: graphqlSchema,
-    rootValue: graphqlResolvers(db),
-    graphiql: true,
-  }));
+  app.use(
+    '/graphql',
+    graphqlHTTP({
+      schema: graphqlSchema,
+      rootValue: graphqlResolvers(db),
+      graphiql: true,
+    })
+  );
 
   const port = process.env.PORT || '3000';
-  app.listen(port, () => console.log(`🚀 Server ready at http://localhost:${port}`));
+  app.listen(port, () =>
+    console.log(`🚀 Server ready at http://localhost:${port}`)
+  );
 };
 
 run();
